@@ -1,6 +1,7 @@
 import csv
 import os
-import main as mn
+import speak as ap
+
 def createtask(taskname,date):
     notdone="notdone"
     file_exists = os.path.exists("task.csv")
@@ -20,7 +21,7 @@ def markdone(taskname,date):
                      if taskname and date in row:
                          
                          data[i] = data[i].replace("Not Done", "Done")
-                         mn.speak(f"Task Marked Done Successfully with Task Name : {taskname} and date : {date}")
+                         ap.speak(f"Task Marked Done Successfully with Task Name : {taskname} and date : {date}")
                          with open('task.csv', 'w') as f1:
                             f1.writelines(data)
                          

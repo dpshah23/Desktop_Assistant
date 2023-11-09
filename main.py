@@ -67,30 +67,29 @@ def wish(name):
             print(f"Good Evening {name}")
             speak(msg)
 
-
-try:
-      var=check_conn()
-      if var==True:
-        file_exists=os.path.exists('name.txt')
-        if file_exists:
-               with open('name.txt','r') as f:
+var=check_conn()
+if var==True:
+      file_exists=os.path.exists('name.txt')
+      if file_exists:
+            with open('name.txt','r') as f:
                     name=f.read()
                     wish(name)
 
-        else:
-                with open('name.txt','w') as f:
+      else:
+            with open('name.txt','w') as f:
                       names=input("What is Your Good Name?")
                       
                       f.write(names)
                       wish(names)
 
-        while True:
+try:
+      
+      while True:
       
             
               text=take()
-              print(text)
-             # speak(text)
-
+              
+              
               if "open youtube".lower() in text.lower():
                     speak("Opening Youtube..")
                     webbrowser.open("https://www.youtube.com/")
@@ -168,24 +167,26 @@ try:
             print("Internet Connection Required")             
 
 except ValueError:
-        print("Enter Valid Input")
-        time.sleep(1)
+        speak("Enter Valid Input")
+       
 except IndexError:
-        print("Nothing To print.....")
+        speak("Nothing To print.....")
 
 except NameError:
-        print("Invalid Input")
+        speak("Invalid Input")
 except TypeError:
-        print("Invalid Input")
+        speak("Invalid Input")
 
 except FileNotFoundError:
-        print("file not found")
+        speak("file not found")
 
 except KeyboardInterrupt:
-      print("\nKeyboard interrupted. Exiting...")
+      speak("\nKeyboard interrupted. Exiting...")
       
 except SystemExit:
-      print("Error Occured")
+      speak("Error Occured")
      
-except:
-      print("Error Occured")
+except Exception as e:
+      
+      print(f"Error Occured {e}")
+      exit
