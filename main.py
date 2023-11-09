@@ -9,16 +9,18 @@ import weather as wt
 import urllib.request as urec
 import tasks as ts
 import time
-
+#Checking For is User Connected To Internet Or Not
 def check_conn():
       host="https://www.google.com/"
       try:
-            urec.urlopen(host)
+            urec.urlopen(host)   
             return True
             
       except:
             return False
-# text1="what is weather in ahmedabad"
+      
+
+# it will Convert text to speech
 def speak(content):
     engine=pyttsx3.init()
     engine.setProperty('voice','en-us')
@@ -27,6 +29,7 @@ def speak(content):
     engine.runAndWait()
     engine.stop()
 
+# It will convert speech To text OR Taking input from Our Microphone
 def take():
       
       r=sr.Recognizer()
@@ -34,14 +37,14 @@ def take():
             print("Listening...........")
             speak("listening...........")
             
-            r.adjust_for_ambient_noise(source, duration=0.1)
+            r.adjust_for_ambient_noise(source, duration=0.1)      #Adjust For noice Cancellation
             r.pause_threshold=1
             r.energy_threshold=250
             r.phrase_threshold=0.1
             audio=r.listen(source)
             try:
                 print("Recognizing......")
-                speak("Recognizing......")
+                speak("Recognizing......")  #it analyze recorded voice through our microphone
                   
                 query=r.recognize_google(audio,language='en-in')
                 print(f"User Said {query}")
@@ -49,6 +52,7 @@ def take():
             except Exception as e:
                   print(f"Error Occured {e}")
 
+# It will wish According To System Time
 def wish(name):
        current_time = datetime.datetime.now().time()
     
@@ -68,6 +72,7 @@ def wish(name):
             speak(msg)
 
 var=check_conn()
+# It Will Get Input Of Name If name.txt file does not exist and save it to it for future refrence
 if var==True:
       file_exists=os.path.exists('name.txt')
       if file_exists:
