@@ -8,6 +8,7 @@ import wikipedia
 import weather as wt
 import urllib.request as urec
 import tasks as ts
+import time
 
 def check_conn():
       host="https://www.google.com/"
@@ -129,9 +130,9 @@ try:
                     speak(f"Condition : {op[1]}")
                     speak(f"Temprature : {op[2]} degree Celsius")
 
-              elif "open Calculator".lower() in text.lower():
-                    speak("Opening Calculator.......")
-                    os.system('cmd /k "calc"')
+             #   elif "open Calculator".lower() in text.lower():
+             #         speak("Opening Calculator.......")
+             #         os.system('cmd /k "calc"')
 
               elif "Create new task".lower() in text.lower():
                     speak("Creating New Task")
@@ -165,5 +166,26 @@ try:
                     break
       else:
             print("Internet Connection Required")             
-except Exception as e:
-      print(f"Error Occured {e}")
+
+except ValueError:
+        print("Enter Valid Input")
+        time.sleep(1)
+except IndexError:
+        print("Nothing To print.....")
+
+except NameError:
+        print("Invalid Input")
+except TypeError:
+        print("Invalid Input")
+
+except FileNotFoundError:
+        print("file not found")
+
+except KeyboardInterrupt:
+      print("\nKeyboard interrupted. Exiting...")
+      
+except SystemExit:
+      print("Error Occured")
+     
+except:
+      print("Error Occured")
