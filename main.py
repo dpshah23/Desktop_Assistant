@@ -9,6 +9,11 @@ import weather as wt
 import urllib.request as urec
 import tasks as ts
 import time
+found=0
+
+# List Of MicroSoft Application
+mapps={'calculator':'calc','calender':'outlookcal:','clock':'ms-clock:','paint':'mspaint','notepad':  'notepad','wordpad':'wordpad','excel':'excel','powerpoint':'powerpnt','word':'winword'}
+
 #Checking For is User Connected To Internet Or Not
 def check_conn():
       host="https://www.google.com/"
@@ -87,6 +92,9 @@ if var==True:
                       f.write(names)
                       wish(names)
 
+else:
+      print("Internet Connection Required")   
+
 try:
       
       while True:
@@ -162,14 +170,43 @@ try:
                     speak("Enter Task Date To Mark Done")
                     date=take()
                     ts.markdone(tasknm,date)
+
+              elif "open Gmail".lower() in text.lower():
+                    speak("Opening Gmail")
+                    webbrowser.open('https://mail.google.com/')
+
+              
+              elif 'open'.lower() in text.lower():
+                    keys=mapps.keys()
+                   #   search="open "
+                   #   startindex=text.lower().find(search)
+                   #   appsearch=text[startindex+len(search):].strip
+                    appsearch1=text.strip('open ')
+                    appsearch=appsearch1.lower()
+                    print(appsearch)
+                    for key in keys:
+                       if appsearch==key:
+                             os.system(f"start {mapps[key]}")
+                             speak(f"Opening {key}")
+                             found=1
+                             break
+                        
+                       else:
+                             pass
+                       
+                    if found==0:
+                          speak("App Not Found")
+                             
+                          
+
+
                     
                           
 
               elif "exit".lower() in text.lower():
                     speak(f"Thanks {name} for visiting Our Desktop Assistant.....")
                     break
-      else:
-            print("Internet Connection Required")             
+                        
 
 except ValueError:
         speak("Enter Valid Input")

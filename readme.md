@@ -14,3 +14,8 @@ Day 2:
     Opening Calculator
     Task Creation, List Task And Mark Done Task
     Checking for connection
+
+10 November , 2023
+day 3:
+    Added Support For Microsoft Apps
+    
