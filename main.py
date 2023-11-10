@@ -9,6 +9,7 @@ import weather as wt
 import urllib.request as urec
 import tasks as ts
 import time
+import pyautogui
 found=0
 
 # List Of MicroSoft Application
@@ -106,6 +107,13 @@ try:
               if "open youtube".lower() in text.lower():
                     speak("Opening Youtube..")
                     webbrowser.open("https://www.youtube.com/")
+                    speak("Do You Want To Search Anything?")
+                    ch=input("Enter Your choice")
+                    if "yes" in ch.lower():
+                          speak("speak to search....")
+                          query=take()
+                          webbrowser.open(f"https://www.youtube.com/results?search_query={query}")
+
                     
               elif "open google".lower() in text.lower():
                     speak("Opening Google...")
@@ -189,17 +197,30 @@ try:
                              os.system(f"start {mapps[key]}")
                              speak(f"Opening {key}")
                              found=1
-                             break
-                        
-                       else:
-                             pass
+                             if appsearch != ('calculator' or 'calender'):
+                                 speak("Do You Want to create New File..")
+                                 choice=input("Enter Your choice:")
+                                 if "yes".lower() in choice.lower():
+                                    time.sleep(2)
+                                    pyautogui.hotkey('ctrl','n')
+                                    break
+                                 else:
+                                   break
+                                   
+
+                             
+                    else:
+                        pass
                        
                     if found==0:
                           speak("App Not Found")
                              
                           
 
-
+              elif 'create new folder'.lower() in text.lower():
+                    speak("What is name of folder")
+                    data=take()
+                    os.system(f'mkdir {data}')
                     
                           
 
