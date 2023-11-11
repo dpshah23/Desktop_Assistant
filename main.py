@@ -107,12 +107,16 @@ try:
               if "open youtube".lower() in text.lower():
                     speak("Opening Youtube..")
                     webbrowser.open("https://www.youtube.com/")
-                    speak("Do You Want To Search Anything?")
-                    ch=input("Enter Your choice")
-                    if "yes" in ch.lower():
-                          speak("speak to search....")
-                          query=take()
-                          webbrowser.open(f"https://www.youtube.com/results?search_query={query}")
+                    time.sleep(6)
+                    pyautogui.press('tab')
+                    pyautogui.press('tab')
+                    pyautogui.press('tab')
+                    pyautogui.press('tab')
+                    speak("Speak Thing to search")
+                    query=take()
+                    pyautogui.write(query)
+                    pyautogui.press('enter')
+
 
                     
               elif "open google".lower() in text.lower():
@@ -206,6 +210,8 @@ try:
                                     break
                                  else:
                                    break
+                                 
+      
                                    
 
                              
@@ -227,6 +233,10 @@ try:
               elif "exit".lower() in text.lower():
                     speak(f"Thanks {name} for visiting Our Desktop Assistant.....")
                     break
+             
+              elif "Live Cricket Score".lower() in text.lower():
+                    speak("Opening Browser......")
+                    webbrowser.open("https://crex.live/")
                         
 
 except ValueError:
