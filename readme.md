@@ -25,3 +25,4 @@ day 3:
 day 4:
     Improved Youtube Search
     Added World Time Access
+    cricket Live Score (Browser)
