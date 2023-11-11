@@ -10,6 +10,7 @@ import urllib.request as urec
 import tasks as ts
 import time
 import pyautogui
+import worldtime as wt
 found=0
 
 # List Of MicroSoft Application
@@ -46,7 +47,7 @@ def take():
             r.adjust_for_ambient_noise(source, duration=0.1)      #Adjust For noice Cancellation
             r.pause_threshold=1
             r.energy_threshold=250
-            r.phrase_threshold=0.1
+            r.phrase_threshold=0.01
             audio=r.listen(source)
             try:
                 print("Recognizing......")
@@ -237,6 +238,14 @@ try:
               elif "Live Cricket Score".lower() in text.lower():
                     speak("Opening Browser......")
                     webbrowser.open("https://crex.live/")
+
+              elif "what is time in ".lower() in text.lower():
+                    search="what is time in "
+                    startindex=text.lower().find(search)
+                    city=text[startindex+len(search):].strip()
+                    speak("fetching Data ")
+
+                    wt.worldtime(city)
                         
 
 except ValueError:
