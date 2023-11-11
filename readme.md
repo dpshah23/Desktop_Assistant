@@ -13,7 +13,7 @@ Day 2:
     Weather Access
     Opening Calculator
     Task Creation, List Task And Mark Done Task
-        Checking for connection
+    Checking for connection
 
 10 November , 2023
 day 3:
