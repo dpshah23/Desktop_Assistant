@@ -123,7 +123,14 @@ try:
               elif "open google".lower() in text.lower():
                     speak("Opening Google...")
                     webbrowser.open("https://www.google.com/")
-             
+                    time.sleep(10)
+
+                    speak("Speak To Search.........")
+                    query=take()
+                    pyautogui.write(query)
+                    pyautogui.press('enter')
+
+                    
               elif "search".lower() in text.lower():
                     speak("Opening Browser...")
                     que=text.split('search')
@@ -188,13 +195,18 @@ try:
                     speak("Opening Gmail")
                     webbrowser.open('https://mail.google.com/')
 
+              elif "open notes".lower() in text.lower():
+                    speak("Opening Notes")
+                    os.system("start onenote")
+
               
               elif 'open'.lower() in text.lower():
                     keys=mapps.keys()
                    #   search="open "
                    #   startindex=text.lower().find(search)
                    #   appsearch=text[startindex+len(search):].strip
-                    appsearch1=text.strip('open ')
+                    search="open "
+                    appsearch1=text.strip(search)
                     appsearch=appsearch1.lower()
                     print(appsearch)
                     for key in keys:
@@ -246,6 +258,45 @@ try:
                     speak("fetching Data ")
 
                     wt.worldtime(city)
+
+              elif "new tab".lower() in text.lower():
+                    speak("Opening New Tab")
+                    pyautogui.hotkey('ctrl','n')   
+
+              elif "New incognito tab".lower() in text.lower():
+                    speak("Opening New Incognito Tab")
+                    pyautogui.hotkey('ctrl','shift','n')
+
+              elif "Close This Tab".lower() in text.lower():
+                    speak("Closing Tab")
+                    pyautogui.hotkey('ctrl','w')
+
+              elif "Create New Tab".lower() in text.lower():
+                    speak("Opening New Tab")
+                    pyautogui.hotkey('ctrl','t')
+
+              elif "open new window".lower() in text.lower():
+                    speak("Opening New Window")
+                    pyautogui.hotkey('ctrl','shift','n')
+           
+
+              elif "Go to next Tab".lower() in text.lower():
+                    pyautogui.hotkey('ctrl','tab')  
+
+
+              elif "Close this app".lower() in text.lower():
+                    pyautogui.hotkey('alt','f4')
+
+              elif "Write".lower() in text.lower():
+                    speak("Speak To Write")
+                    writetext=take()
+                    pyautogui.write(writetext)
+
+
+
+                
+
+              
                         
 
 except ValueError:
