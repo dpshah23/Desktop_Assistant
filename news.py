@@ -1,7 +1,7 @@
 import requests
 def news(search):
-        data=requests.get(f'https://newsdata.io/api/1/archive?apikey=pub_32671c056c8e6522b35c361f4bd4b21403353&q=example&language=en&from_date=2023-01-19&to_date=2023-01-25')
-        print(data.json())
+        data=requests.get(f'https://newsapi.org/v2/everything?q={search}&from=2023-11-14&sortBy=publishedAt&apiKey=4e339f9aa0a24bba8e1c7e7dc1926a7e')
+        print(data.text)
    
 
 news('technology')

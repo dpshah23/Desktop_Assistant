@@ -27,6 +27,11 @@ day 4:
     Added World Time Access
     cricket Live Score (Browser)
 
-25 November , 2023
+15 November , 2023
 Day 5:
     Improved Google Search and added Functionalities like creating new tab closing application
+
+20 November , 2023
+Day 6:
+    Added Jokes Feature
+

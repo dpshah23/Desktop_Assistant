@@ -4,13 +4,13 @@ import pyttsx3
 import datetime
 import speech_recognition as sr
 import pyaudio
-import wikipedia
 import weather as wt
 import urllib.request as urec
 import tasks as ts
 import time
 import pyautogui
 import worldtime as wt
+import jokes as jk
 found=0
 
 # List Of MicroSoft Application
@@ -56,6 +56,13 @@ def take():
                 query=r.recognize_google(audio,language='en-in')
                 print(f"User Said {query}")
                 return query
+            except sr.UnknownValueError:
+                  print("Sorry, I could not understand what you said.")
+                  speak("Sorry, I could not understand what you said.")
+
+            except sr.RequestError as e:
+                  print(f"Could not request results from Google Speech Recognition service; {e}")
+                  speak("Could not request results from Google Speech Recognition service. Please check your internet connection.")
             except Exception as e:
                   print(f"Error Occured {e}")
 
@@ -287,18 +294,27 @@ try:
               elif "Close this app".lower() in text.lower():
                     pyautogui.hotkey('alt','f4')
 
-              elif "Write".lower() in text.lower():
+              elif "right".lower() or "write".lower()  in text.lower():
                     speak("Speak To Write")
                     writetext=take()
                     pyautogui.write(writetext)
+
+              elif "tell me a joke".lower() in text.lower():
+                    jk.joke()
+            
+              elif "one more".lower() in text.lower():
+                    jk.joke()
+                    
+
+              else:
+                    print("It's Out of my knowledge")
+                    speak("It's Out of my knowledge")
 
 
 
                 
 
               
-                        
-
 except ValueError:
         speak("Enter Valid Input")
        
@@ -322,4 +338,4 @@ except SystemExit:
 except Exception as e:
       
       print(f"Error Occured {e}")
-      exit
+      
