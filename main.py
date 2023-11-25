@@ -30,7 +30,9 @@ def check_conn():
 # it will Convert text to speech
 def speak(content):
     engine=pyttsx3.init()
+    voices=engine.getProperty('voices')
     engine.setProperty('voice','en-us')
+    engine.setProperty('voice',voices[0].id)
     engine.setProperty('rate', 150)
     engine.say(content)
     engine.runAndWait()
@@ -126,7 +128,13 @@ try:
                     pyautogui.press('enter')
 
 
-                    
+              elif "tell me a joke".lower() in text.lower():
+                    jk.joke()
+            
+              elif "one more".lower() in text.lower():
+                    jk.joke()
+
+
               elif "open google".lower() in text.lower():
                     speak("Opening Google...")
                     webbrowser.open("https://www.google.com/")
@@ -299,11 +307,6 @@ try:
                     writetext=take()
                     pyautogui.write(writetext)
 
-              elif "tell me a joke".lower() in text.lower():
-                    jk.joke()
-            
-              elif "one more".lower() in text.lower():
-                    jk.joke()
                     
 
               else:
@@ -312,11 +315,9 @@ try:
 
 
 
-                
 
-              
 except ValueError:
-        speak("Enter Valid Input")
+      speak("Enter Valid Input")
        
 except IndexError:
         speak("Nothing To print.....")
