@@ -11,6 +11,7 @@ import time
 import pyautogui
 import worldtime as wt
 import jokes as jk
+import subprocess
 found=0
 
 # List Of MicroSoft Application
@@ -260,6 +261,7 @@ try:
 
               elif "exit".lower() in text.lower():
                     speak(f"Thanks {name} for visiting Our Desktop Assistant.....")
+                    subprocess.run(['python','C:/Users/dpsha/OneDrive/Desktop/DEEP/Desktop_Assistant/detect.py'])
                     break
              
               elif "Live Cricket Score".lower() in text.lower():
