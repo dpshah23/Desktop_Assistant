@@ -15,5 +15,8 @@ def reply(Query):
 
     reply=bard.get_answer(Query)['content']
     print(reply)
-    sp.speak(reply)
     
+    if len(reply)<=175:
+       sp.speak(reply)
+    
+
