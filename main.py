@@ -272,7 +272,12 @@ try:
                     os.system(f'mkdir {data}')
                     
                           
+              elif "right".lower() or "write".lower()  in text.lower():
+                    speak("Speak To Write")
+                    writetext=take()
+                    pyautogui.write(writetext)
 
+                    
               elif "exit".lower() in text.lower():
                     speak(f"Thanks {name} for visiting Our Desktop Assistant.....")
                    #   subprocess.run(['python','C:/Users/dpsha/OneDrive/Desktop/DEEP/Desktop_Assistant/detect.py'])
@@ -323,10 +328,7 @@ try:
                     speak(f"Playing {txt}")
                     pw.playonyt(txt)
 
-              elif "right".lower() or "write".lower()  in text.lower():
-                    speak("Speak To Write")
-                    writetext=take()
-                    pyautogui.write(writetext)
+            
 
               else:
                     bp.reply(text)
