@@ -12,6 +12,9 @@ import pyautogui
 import worldtime as wt
 import jokes as jk
 import subprocess
+import wikipedia
+import pywhatkit as pw
+import bard as bp
 found=0
 
 # List Of MicroSoft Application
@@ -154,12 +157,15 @@ try:
                     webbrowser.open(f"https://www.google.com/search?q={que[1]}")
 
               elif "wikipedia ".lower() in text.lower():
-                    speak("Opening Wikipedia....")
+                    speak("searching Wikipedia....")
                     search="wikipedia "
                     startindex=text.lower().find(search)
                     res=text[startindex+len(search):].strip()
                     
                     webbrowser.open(f"https://en.wikipedia.org/wiki/{res}")
+                    info=wikipedia.summary(res,3)
+                    speak("For Detail Information I opened Website as well")
+                    speak(info)
                     
               elif "hello".lower() in text.lower():
                     speak("Hello! How Are You?")
@@ -215,6 +221,14 @@ try:
                     speak("Opening Notes")
                     os.system("start onenote")
 
+              elif "Send Whatsapp message".lower() in text.lower():
+                    speak("Enter Number to send message (please include (+91) ")
+                    num=int(input("Enter Number (please include (+91) ): "))
+                    speak("Speak to send message")
+                    msg=take()
+                    pw.sendwhatmsg(num,msg)
+
+
               
               elif 'open'.lower() in text.lower():
                     keys=mapps.keys()
@@ -261,7 +275,7 @@ try:
 
               elif "exit".lower() in text.lower():
                     speak(f"Thanks {name} for visiting Our Desktop Assistant.....")
-                    subprocess.run(['python','C:/Users/dpsha/OneDrive/Desktop/DEEP/Desktop_Assistant/detect.py'])
+                   #   subprocess.run(['python','C:/Users/dpsha/OneDrive/Desktop/DEEP/Desktop_Assistant/detect.py'])
                     break
              
               elif "Live Cricket Score".lower() in text.lower():
@@ -304,17 +318,19 @@ try:
               elif "Close this app".lower() in text.lower():
                     pyautogui.hotkey('alt','f4')
 
+              elif "play " in text.lower():
+                    txt=text.replace('play ','')
+                    speak(f"Playing {txt}")
+                    pw.playonyt(txt)
+
               elif "right".lower() or "write".lower()  in text.lower():
                     speak("Speak To Write")
                     writetext=take()
                     pyautogui.write(writetext)
 
-                    
-
               else:
-                    print("It's Out of my knowledge")
-                    speak("It's Out of my knowledge")
-
+                    bp.reply(text)
+            
 
 
 
