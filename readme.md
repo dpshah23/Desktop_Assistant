@@ -36,6 +36,7 @@ Day 6:
     Added Jokes Feature
 
 30 November , 2023
+Day 7:
     Added Support to play youtube audio
     send whatsapp messages (Not Working Properly)
     Google Bard Support for realtime Data Access
