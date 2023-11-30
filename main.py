@@ -272,10 +272,7 @@ try:
                     os.system(f'mkdir {data}')
                     
                           
-              elif "right".lower() or "write".lower()  in text.lower():
-                    speak("Speak To Write")
-                    writetext=take()
-                    pyautogui.write(writetext)
+              
 
                     
               elif "exit".lower() in text.lower():
