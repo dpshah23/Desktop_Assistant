@@ -148,15 +148,17 @@ try:
               elif "What is My name".lower() in text.lower():
                     speak(f"Your Name Is {name}")
 
-              elif "Tell Me Remembered text".lower() in text.lower():
+              elif "what do you remember".lower() in text.lower():
                     with open("remember.txt", mode='r') as text:
                         text_f = text.read().strip()
+                        
                         if not text_f:
                               speak("I don't Rembember Anything")
 
 
                   
                         else:
+                              speak("I remembered : ")
                               speak(text_f)
 
 
@@ -248,7 +250,7 @@ try:
               elif "hello".lower() in text.lower():
                     speak("Hello! How Are You?")
 
-              elif "remember".lower() in text.lower():
+              elif "remember that".lower() in text.lower():
                   speak("Speak what to remember")
                   rem = take()
                   with open("remember.txt", 'a') as remfile:
