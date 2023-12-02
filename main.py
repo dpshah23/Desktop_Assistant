@@ -145,6 +145,20 @@ try:
                     pyautogui.write(query)
                     pyautogui.press('enter')
 
+              elif "What is My name".lower() in text.lower():
+                    speak(f"Your Name Is {name}")
+
+              elif "Tell Me Remembered text".lower() in text.lower():
+                    with open("remember.txt", mode='r') as text:
+                        text_f = text.read().strip()
+                        if not text_f:
+                              speak("I don't Rembember Anything")
+
+
+                  
+                        else:
+                              speak(text_f)
+
 
               elif "notify me".lower() in text.lower() or "inform me".lower() in text.lower():
                    task=[]
@@ -185,16 +199,7 @@ try:
 
                              # print("Date Not Found")
 
-              elif "What do you remeber".lower() in text.lower():
-                    with open("remember.txt", mode='r') as text:
-                        text_f = text.read().strip()
-                        if not text_f:
-                              speak("I don't Rembember Anything")
-
-
-                  
-                        else:
-                              speak(text_f)
+              
 
               elif "set an alarm".lower() in text.lower():
                    print("input time example:- 10 and 10 and 10")
