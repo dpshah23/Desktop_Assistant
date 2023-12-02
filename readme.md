@@ -49,4 +49,4 @@ Day 8:
     Added Indian Stock Market (opening Money Control)
     Added Support For third Party Apps
     Set Alarm
-    
+    Remember Function

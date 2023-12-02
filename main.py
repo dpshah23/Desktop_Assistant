@@ -185,11 +185,22 @@ try:
 
                              # print("Date Not Found")
 
+              elif "What do you remeber".lower() in text.lower():
+                    with open("remember.txt", mode='r') as text:
+                        text_f = text.read().strip()
+                        if not text_f:
+                              speak("I don't Rembember Anything")
+
+
+                  
+                        else:
+                              speak(text_f)
+
               elif "set an alarm".lower() in text.lower():
                    print("input time example:- 10 and 10 and 10")
                    speak("Set the time")
 
-                   a = take()
+                   a = input("Enter Time:")
                    alarm(a)
                    speak("Done,sir") 
 
@@ -231,6 +242,14 @@ try:
                     
               elif "hello".lower() in text.lower():
                     speak("Hello! How Are You?")
+
+              elif "remember".lower() in text.lower():
+                  speak("Speak what to remember")
+                  rem = take()
+                  with open("remember.txt", 'a') as remfile:
+                      remfile.write(rem + "\n")
+                  speak("I've remembered that.")
+
 
             
 
