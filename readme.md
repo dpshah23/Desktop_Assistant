@@ -41,3 +41,12 @@ Day 7:
     send whatsapp messages (Not Working Properly)
     Google Bard Support for realtime Data Access
 
+01 December , 2023
+Day 8:
+    Added Calculator
+    Send Notification For Task
+    Integrate News API
+    Added Indian Stock Market (opening Money Control)
+    Added Support For third Party Apps
+    Set Alarm
+    

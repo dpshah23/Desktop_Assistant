@@ -14,7 +14,15 @@ import jokes as jk
 import subprocess
 import wikipedia
 import pywhatkit as pw
-import bard as bp
+import news as ns
+from calculatesum import calcu
+from prettytable import PrettyTable
+from plyer import notification
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+from pygame import mixer
+import csv
+
+# import bard as bp
 found=0
 
 # List Of MicroSoft Application
@@ -41,6 +49,12 @@ def speak(content):
     engine.say(content)
     engine.runAndWait()
     engine.stop()
+
+def alarm(query):
+    timehere = open("Alarmtext.txt","a")
+    timehere.write(query)
+    timehere.close()
+    os.startfile("alarm.py")
 
 # It will convert speech To text OR Taking input from Our Microphone
 def take():
@@ -132,6 +146,54 @@ try:
                     pyautogui.press('enter')
 
 
+              elif "notify me".lower() in text.lower() or "inform me".lower() in text.lower():
+                   task=[]
+                   with open("task.csv", mode='r') as file:
+                           
+ 
+                        dispdate = datetime.datetime.now().date()
+                        fdate = dispdate.strftime("%d/%m/%Y")
+                        
+                     
+                        reader = csv.reader(file)
+                     
+                        for row in reader:
+                         
+ 
+                           tempdate = row[1]
+                           isdone=row[2]
+                         #  print(tempdate)
+                           if fdate == tempdate:
+                                 if isdone=="notdone":
+                                       task.append(row[0])
+
+                        
+                             
+ 
+                           else:
+                              continue
+                           
+                        mixer.init()
+                        mixer.music.load("notification.mp3")
+                        mixer.music.play()
+                        tasks=str(task)
+                        notification.notify(
+                            title = "My schedule :-",
+                            message = tasks,
+                            timeout = 15
+                            )
+
+                             # print("Date Not Found")
+
+              elif "set an alarm".lower() in text.lower():
+                   print("input time example:- 10 and 10 and 10")
+                   speak("Set the time")
+
+                   a = take()
+                   alarm(a)
+                   speak("Done,sir") 
+
+
               elif "tell me a joke".lower() in text.lower():
                     jk.joke()
             
@@ -170,7 +232,17 @@ try:
               elif "hello".lower() in text.lower():
                     speak("Hello! How Are You?")
 
-              
+            
+
+              elif "open spotify".lower() in text.lower():
+                    speak("opening spotify.....")
+                    os.system("start spotify.exe")
+                    
+              elif "indian stock market".lower() in text.lower() or "stock market".lower() in text.lower() or "shares".lower() in text.lower() or "share".lower() in text.lower() or "share price".lower() in text.lower() or "share market".lower() in text.lower():
+                    print("Opening Indian Stock Market Money Control")
+                    speak("Opening Indian Stock Market Money Control")
+                    webbrowser.open("https://www.moneycontrol.com/stocksmarketsindia/")
+            
 
               elif "What is weather in ".lower() in text.lower():
                     search="what is weather in "
@@ -189,20 +261,38 @@ try:
              #         os.system('cmd /k "calc"')
 
               elif "Create new task".lower() in text.lower():
+                    mode=''
+                    speak("Do you want to clear old tasks (Plz write YES or NO)")
+                    query=input("Write Your Choice:")
+                    if "yes".lower() in query.lower():
+                          os.remove("task.csv")
+                          mode='w'
+                    else:
+                          mode='a'
+                   
                     speak("Creating New Task")
                     speak("Enter Task Name")
                     task_nm=take()
                     speak("Enter Task Date")
-                    date=take()
-                    ts.createtask(task_nm,date)
+                    speak("For Better Accuracy Please Type Date")
+                    date=input("Enter Task Date (DD/MM/YYYY) : ")
+                    ts.createtask(task_nm,date,mode)
                     speak(f"Task Created.... Title : {task_nm} and date : {date}")
 
-              elif "Print Task".lower() in text.lower():
-                    
+             
+              elif "print Task".lower() in text.lower():
+                    mytable=PrettyTable()
+                    mytable.field_names=['Task Name','Date','Status']
                     speak("List Of Tasks")
                     with open("task.csv", mode='r') as file:
-                        tasks = file.read()
-                        print(tasks)
+                        tasks = file.reader()
+                        next(tasks)
+                        for row in tasks:
+                            mytable.add_row([row[0], row[1], row[2]])
+
+                        file.close()
+
+                    print(mytable)
 
                     file.close()
               elif "mark done task".lower() in text.lower():
@@ -227,6 +317,8 @@ try:
                     speak("Speak to send message")
                     msg=take()
                     pw.sendwhatmsg(num,msg)
+
+              
 
 
               
@@ -262,7 +354,9 @@ try:
                         pass
                        
                     if found==0:
-                          speak("App Not Found")
+                          pyautogui.press("super")
+                          pyautogui.write(appsearch)
+                          pyautogui.press('enter')
                              
                           
 
@@ -272,7 +366,12 @@ try:
                     os.system(f'mkdir {data}')
                     
                           
-              
+              elif "calculate".lower() in text.lower():
+                    
+                    calcu(text)
+
+             
+
 
                     
               elif "exit".lower() in text.lower():
@@ -283,6 +382,14 @@ try:
               elif "Live Cricket Score".lower() in text.lower():
                     speak("Opening Browser......")
                     webbrowser.open("https://crex.live/")
+
+              elif "news".lower() in text.lower() or " news ".lower() in text.lower():
+                    speak("in which field do you want to get news. ")
+                    speak("Speak to search")
+                    que=take()
+                    print(que)
+                    ns.news(que)
+                                 
 
               elif "what is time in ".lower() in text.lower():
                     search="what is time in "
@@ -314,7 +421,9 @@ try:
            
 
               elif "Go to next Tab".lower() in text.lower():
-                    pyautogui.hotkey('ctrl','tab')  
+                    pyautogui.hotkey('ctrl','tab')
+
+               
 
 
               elif "Close this app".lower() in text.lower():
@@ -328,7 +437,9 @@ try:
             
 
               else:
-                    bp.reply(text)
+                    pass
+                   #   bp.reply(text)
+
             
 
 
@@ -340,9 +451,9 @@ except IndexError:
         speak("Nothing To print.....")
 
 except NameError:
-        speak("Invalid Input")
+        speak(" name error Invalid Input")
 except TypeError:
-        speak("Invalid Input")
+        speak("type error Invalid Input")
 
 except FileNotFoundError:
         speak("file not found")

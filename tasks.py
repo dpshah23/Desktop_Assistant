@@ -2,7 +2,7 @@ import csv
 import os
 import speak as ap
 
-def createtask(taskname,date):
+def createtask(taskname,date,mode):
     notdone="notdone"
     file_exists = os.path.exists("task.csv")
     with open("task.csv", mode='a', newline='') as file:
