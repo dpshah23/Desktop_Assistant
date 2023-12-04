@@ -4,7 +4,7 @@ import pyttsx3
 import datetime
 import speech_recognition as sr
 import pyaudio
-import weather as wt
+import weather as we
 import urllib.request as urec
 import tasks as ts
 import time
@@ -123,44 +123,44 @@ if var==True:
                       wish(names)
 
 else:
-      print("Internet Connection Required")   
-
-try:
+      print("Internet Connection Required")
+      exit
+while True:
       
-      while True:
+      try:
       
             
-              text=take()
+            text=take()
               
               
-              if "open youtube".lower() in text.lower():
-                    speak("Opening Youtube..")
-                    webbrowser.open("https://www.youtube.com/")
-                    time.sleep(6)
-                    pyautogui.press('tab')
-                    pyautogui.press('tab')
-                    pyautogui.press('tab')
-                    pyautogui.press('tab')
-                    speak("Speak Thing to search")
-                    query=take()
-                    pyautogui.write(query)
-                    pyautogui.press('enter')
+            if "open youtube".lower() in text.lower():
+                  speak("Opening Youtube..")
+                  webbrowser.open("https://www.youtube.com/")
+                  time.sleep(6)
+                  pyautogui.press('tab')
+                  pyautogui.press('tab')
+                  pyautogui.press('tab')
+                  pyautogui.press('tab')
+                  speak("Speak Thing to search")
+                  query=take()
+                  pyautogui.write(query)
+                  pyautogui.press('enter')
 
-              elif "internet speed".lower() in text.lower() or "speed test".lower() in text.lower() or "what is my internet speed".lower() in text.lower():
-                    wifi = speedtest.Speedtest()
-                    speak("calculating")
-                    upload_wifi=wifi.upload()/1048576
-                    download_wifi=wifi.download()/1048576
+            elif "internet speed".lower() in text.lower() or "speed test".lower() in text.lower() or "what is my internet speed".lower() in text.lower():
+                  wifi = speedtest.Speedtest()
+                  speak("calculating")
+                  upload_wifi=wifi.upload()/1048576
+                  download_wifi=wifi.download()/1048576
 
-                    speak(f"Your Net's Download Speed is {download_wifi} and upload speed is {upload_wifi}......")
-                    print(f"Your Net's Download Speed is {download_wifi} and upload speed is {upload_wifi}......")
+                  speak(f"Your Net's Download Speed is {download_wifi} and upload speed is {upload_wifi}......")
+                  print(f"Your Net's Download Speed is {download_wifi} and upload speed is {upload_wifi}......")
                     
 
-              elif "What is My name".lower() in text.lower():
-                    speak(f"Your Name Is {name}")
+            elif "What is My name".lower() in text.lower():
+                  speak(f"Your Name Is {name}")
 
-              elif "what do you remember".lower() in text.lower():
-                    with open("remember.txt", mode='r') as text:
+            elif "what do you remember".lower() in text.lower():
+                  with open("remember.txt", mode='r') as text:
                         text_f = text.read().strip()
                         
                         if not text_f:
@@ -173,9 +173,9 @@ try:
                               speak(text_f)
 
 
-              elif "notify me".lower() in text.lower() or "inform me".lower() in text.lower():
-                   task=[]
-                   with open("task.csv", mode='r') as file:
+            elif "notify me".lower() in text.lower() or "inform me".lower() in text.lower():
+                  task=[]
+                  with open("task.csv", mode='r') as file:
                            
  
                         dispdate = datetime.datetime.now().date()
@@ -187,18 +187,18 @@ try:
                         for row in reader:
                          
  
-                           tempdate = row[1]
-                           isdone=row[2]
-                         #  print(tempdate)
-                           if fdate == tempdate:
-                                 if isdone=="notdone":
-                                       task.append(row[0])
+                              tempdate = row[1]
+                              isdone=row[2]
+                         #       print(tempdate)
+                              if fdate == tempdate:
+                                    if isdone=="notdone":
+                                          task.append(row[0])
 
                         
                              
  
-                           else:
-                              continue
+                              else:
+                                    continue
                            
                         mixer.init()
                         mixer.music.load("notification.mp3")
@@ -214,114 +214,113 @@ try:
 
               
 
-              elif "set an alarm".lower() in text.lower():
-                   print("input time example:- 10 and 10 and 10")
-                   speak("Set the time")
+            elif "set an alarm".lower() in text.lower():
+                  print("input time example:- 10 and 10 and 10")
+                  speak("Set the time")
+                  a = input("Enter Time:")
+                  alarm(a)
+                  speak("Done,sir") 
 
-                   a = input("Enter Time:")
-                   alarm(a)
-                   speak("Done,sir") 
 
-
-              elif "tell me a joke".lower() in text.lower():
-                    jk.joke()
+            elif "tell me a joke".lower() in text.lower():
+                  jk.joke()
             
-              elif "one more".lower() in text.lower():
-                    jk.joke()
+            elif "one more".lower() in text.lower():
+                  jk.joke()
 
 
-              elif "open google".lower() in text.lower():
-                    speak("Opening Google...")
-                    webbrowser.open("https://www.google.com/")
-                    time.sleep(10)
+            elif "open google".lower() in text.lower():
+                  speak("Opening Google...")
+                  webbrowser.open("https://www.google.com/")
+                  time.sleep(10)
 
-                    speak("Speak To Search.........")
-                    query=take()
-                    pyautogui.write(query)
-                    pyautogui.press('enter')
+                  speak("Speak To Search.........")
+                  query=take()
+                  pyautogui.write(query)
+                  pyautogui.press('enter')
 
                     
-              elif "search".lower() in text.lower():
-                    speak("Opening Browser...")
-                    que=text.split('search')
+            elif "search".lower() in text.lower():
+                  speak("Opening Browser...")
+                  que=text.split('search')
 
-                    webbrowser.open(f"https://www.google.com/search?q={que[1]}")
+                  webbrowser.open(f"https://www.google.com/search?q={que[1]}")
 
-              elif "wikipedia ".lower() in text.lower():
-                    speak("searching Wikipedia....")
-                    search="wikipedia "
-                    startindex=text.lower().find(search)
-                    res=text[startindex+len(search):].strip()
+            elif "wikipedia ".lower() in text.lower():
+                  speak("searching Wikipedia....")
+                  search="wikipedia "
+                  startindex=text.lower().find(search)
+                  res=text[startindex+len(search):].strip()
                     
-                    webbrowser.open(f"https://en.wikipedia.org/wiki/{res}")
-                    info=wikipedia.summary(res,3)
-                    speak("For Detail Information I opened Website as well")
-                    speak(info)
+                  webbrowser.open(f"https://en.wikipedia.org/wiki/{res}")
+                  info=wikipedia.summary(res,3)
+                  speak("For Detail Information I opened Website as well")
+                  speak(info)
                     
-              elif "hello".lower() in text.lower():
-                    speak("Hello! How Are You?")
+            elif "hello".lower() in text.lower():
+                  speak("Hello! How Are You?")
 
-              elif "remember that".lower() in text.lower():
-                  speak("Speak what to remember")
-                  rem = take()
-                  with open("remember.txt", 'a') as remfile:
-                      remfile.write(rem + "\n")
-                  speak("I've remembered that.")
+            elif "remember that".lower() in text.lower():
+                 speak("Speak what to remember")
+                 rem = take()
+                 with open("remember.txt", 'a') as remfile:
+                        remfile.write(rem + "\n")
+                 speak("I've remembered that.")
 
 
-            
-
-              elif "open spotify".lower() in text.lower():
-                    speak("opening spotify.....")
-                    os.system("start spotify.exe")
-                    
-              elif "indian stock market".lower() in text.lower() or "stock market".lower() in text.lower() or "shares".lower() in text.lower() or "share".lower() in text.lower() or "share price".lower() in text.lower() or "share market".lower() in text.lower():
-                    print("Opening Indian Stock Market Money Control")
-                    speak("Opening Indian Stock Market Money Control")
-                    webbrowser.open("https://www.moneycontrol.com/stocksmarketsindia/")
             
 
-              elif "What is weather in ".lower() in text.lower():
-                    search="what is weather in "
-                    startindex=text.lower().find(search)
-                    location=text[startindex+len(search):].strip()
-                    print(location)
-                    op=wt.weather(location)
+            elif "open spotify".lower() in text.lower():
+                  speak("opening spotify.....")
+                  os.system("start spotify.exe")
+                    
+            elif "indian stock market".lower() in text.lower() or "stock market".lower() in text.lower() or "shares".lower() in text.lower() or "share".lower() in text.lower() or "share price".lower() in text.lower() or "share market".lower() in text.lower():
+                  print("Opening Indian Stock Market Money Control")
+                  speak("Opening Indian Stock Market Money Control")
+                  webbrowser.open("https://www.moneycontrol.com/stocksmarketsindia/")
+            
+
+            elif "What is weather in ".lower() in text.lower():
+                  search="what is weather in "
+                  startindex=text.lower().find(search)
+                  location=text[startindex+len(search):].strip()
+                  print(location)
+                  op=we.weather(location)
                   
                  
-                    speak(f"Location : {op[0]}")
-                    speak(f"Condition : {op[1]}")
-                    speak(f"Temprature : {op[2]} degree Celsius")
+                  speak(f"Location : {op[0]}")
+                  speak(f"Condition : {op[1]}")
+                  speak(f"Temprature : {op[2]} degree Celsius")
 
              #   elif "open Calculator".lower() in text.lower():
              #         speak("Opening Calculator.......")
              #         os.system('cmd /k "calc"')
 
-              elif "Create new task".lower() in text.lower():
-                    mode=''
-                    speak("Do you want to clear old tasks (Plz write YES or NO)")
-                    query=input("Write Your Choice:")
-                    if "yes".lower() in query.lower():
-                          os.remove("task.csv")
-                          mode='w'
-                    else:
-                          mode='a'
-                   
-                    speak("Creating New Task")
-                    speak("Enter Task Name")
-                    task_nm=take()
-                    speak("Enter Task Date")
-                    speak("For Better Accuracy Please Type Date")
-                    date=input("Enter Task Date (DD/MM/YYYY) : ")
-                    ts.createtask(task_nm,date,mode)
-                    speak(f"Task Created.... Title : {task_nm} and date : {date}")
+            elif "Create new task".lower() in text.lower():
+                  mode=''
+                  speak("Do you want to clear old tasks (Plz write YES or NO)")
+                  query=input("Write Your Choice:")
+                  if "yes".lower() in query.lower():
+                        os.remove("task.csv")
+                        mode='w'
+                  else:
+                        mode='a'
+                  
+                  speak("Creating New Task")
+                  speak("Enter Task Name")
+                  task_nm=take()
+                  speak("Enter Task Date")
+                  speak("For Better Accuracy Please Type Date")
+                  date=input("Enter Task Date (DD/MM/YYYY) : ")
+                  ts.createtask(task_nm,date,mode)
+                  speak(f"Task Created.... Title : {task_nm} and date : {date}")
 
              
-              elif "print Task".lower() in text.lower():
-                    mytable=PrettyTable()
-                    mytable.field_names=['Task Name','Date','Status']
-                    speak("List Of Tasks")
-                    with open("task.csv", mode='r') as file:
+            elif "print Task".lower() in text.lower():
+                  mytable=PrettyTable()
+                  mytable.field_names=['Task Name','Date','Status']
+                  speak("List Of Tasks")
+                  with open("task.csv", mode='r') as file:
                         tasks = file.reader()
                         next(tasks)
                         for row in tasks:
@@ -329,48 +328,48 @@ try:
 
                         file.close()
 
-                    print(mytable)
+                  print(mytable)
 
-                    file.close()
-              elif "mark done task".lower() in text.lower():
-                    speak("Marking Done Tasks")
-                    speak("Enter Task Name To Mark Done")
-                    tasknm=take()
-                    speak("Enter Task Date To Mark Done")
-                    date=take()
-                    ts.markdone(tasknm,date)
+                   
+            elif "mark done task".lower() in text.lower():
+                  speak("Marking Done Tasks")
+                  speak("Enter Task Name To Mark Done")
+                  tasknm=take()
+                  speak("Enter Task Date To Mark Done")
+                  date=take()
+                  ts.markdone(tasknm,date)
 
-              elif "open Gmail".lower() in text.lower():
-                    speak("Opening Gmail")
-                    webbrowser.open('https://mail.google.com/')
+            elif "open Gmail".lower() in text.lower():
+                  speak("Opening Gmail")
+                  webbrowser.open('https://mail.google.com/')
 
-              elif "open notes".lower() in text.lower():
-                    speak("Opening Notes")
-                    os.system("start onenote")
+            elif "open notes".lower() in text.lower():
+                  speak("Opening Notes")
+                  os.system("start onenote")
 
-              elif "Send Whatsapp message".lower() in text.lower():
-                    speak("Enter Number to send message (please include (+91) ")
-                    num=int(input("Enter Number (please include (+91) ): "))
-                    speak("Speak to send message")
-                    msg=take()
-                    pw.sendwhatmsg(num,msg)
-
-              
-
+            elif "Send Whatsapp message".lower() in text.lower():
+                  speak("Enter Number to send message (please include (+91) ")
+                  num=int(input("Enter Number (please include (+91) ): "))
+                  speak("Speak to send message")
+                  msg=take()
+                  pw.sendwhatmsg(num,msg)
 
               
-              elif 'open'.lower() in text.lower():
-                    keys=mapps.keys()
+
+
+              
+            elif 'open'.lower() in text.lower():
+                  keys=mapps.keys()
                    #   search="open "
                    #   startindex=text.lower().find(search)
                    #   appsearch=text[startindex+len(search):].strip
                   
                     
-                    appsearch1=text.replace("open ","")
-                    appsearch=appsearch1.lower()
-                    print(appsearch)
-                    for key in keys:
-                       if appsearch==key:
+                  appsearch1=text.replace("open ","")
+                  appsearch=appsearch1.lower()
+                  print(appsearch)
+                  for key in keys:
+                        if appsearch==key:
                              os.system(f"start {mapps[key]}")
                              speak(f"Opening {key}")
                              found=1
@@ -388,121 +387,124 @@ try:
                                    
 
                              
-                    else:
-                        pass
+                        else:
+                              pass
                        
-                    if found==0:
+                  if found==0:
                           pyautogui.press("super")
                           pyautogui.write(appsearch)
+                          time.sleep(0.333)
                           pyautogui.press('enter')
                              
                           
 
-              elif 'create new folder'.lower() in text.lower():
-                    speak("What is name of folder")
-                    data=take()
-                    os.system(f'mkdir {data}')
-                    
+            elif 'create new folder'.lower() in text.lower():
+                  speak("What is name of folder")
+                  data=take()
+                  os.system(f'mkdir {data}')
+                   
                           
-              elif "calculate".lower() in text.lower():
-                    
-                    calcu(text)
+            elif "calculate".lower() in text.lower():
+              
+                  calcu(text)
 
              
 
 
                     
-              elif "exit".lower() in text.lower():
-                    speak(f"Thanks {name} for visiting Our Desktop Assistant.....")
+            elif "exit".lower() in text.lower():
+                  speak(f"Thanks {name} for visiting Our Desktop Assistant.....")
                    #   subprocess.run(['python','C:/Users/dpsha/OneDrive/Desktop/DEEP/Desktop_Assistant/detect.py'])
-                    break
+                  break
              
-              elif "Live Cricket Score".lower() in text.lower():
-                    speak("Opening Browser......")
-                    webbrowser.open("https://crex.live/")
+            elif "Live Cricket Score".lower() in text.lower():
+                  speak("Opening Browser......")
+                  webbrowser.open("https://crex.live/")
 
-              elif "news".lower() in text.lower() or " news ".lower() in text.lower():
-                    speak("in which field do you want to get news. ")
-                    speak("Speak to search")
-                    que=take()
-                    print(que)
-                    ns.news(que)
+            elif "news".lower() in text.lower() or " news ".lower() in text.lower():
+                  speak("in which field do you want to get news. ")
+                  speak("Speak to search")
+                  que=take()
+                  print(que)
+                  ns.news(que)
                                  
 
-              elif "what is time in ".lower() in text.lower():
-                    search="what is time in "
-                    startindex=text.lower().find(search)
-                    city=text[startindex+len(search):].strip()
-                    speak("fetching Data ")
+            elif "what is time in ".lower() in text.lower():
+                  search="what is time in "
+                  startindex=text.lower().find(search)
+                  city=text[startindex+len(search):].strip()
+                  speak("fetching Data ")
 
-                    wt.worldtime(city)
+                  wt.worldtime(city)
 
-              elif "new tab".lower() in text.lower():
-                    speak("Opening New Tab")
-                    pyautogui.hotkey('ctrl','n')   
+            elif "new tab".lower() in text.lower():
+                  speak("Opening New Tab")
+                  pyautogui.hotkey('ctrl','n')   
 
-              elif "New incognito tab".lower() in text.lower():
-                    speak("Opening New Incognito Tab")
-                    pyautogui.hotkey('ctrl','shift','n')
+            elif "New incognito tab".lower() in text.lower():
+                  speak("Opening New Incognito Tab")
+                  pyautogui.hotkey('ctrl','shift','n')
 
-              elif "Close This Tab".lower() in text.lower():
-                    speak("Closing Tab")
-                    pyautogui.hotkey('ctrl','w')
+            elif "Close This Tab".lower() in text.lower():
+                  speak("Closing Tab")
+                  pyautogui.hotkey('ctrl','w')
 
-              elif "Create New Tab".lower() in text.lower():
-                    speak("Opening New Tab")
-                    pyautogui.hotkey('ctrl','t')
+            elif "Create New Tab".lower() in text.lower():
+                  speak("Opening New Tab")
+                  pyautogui.hotkey('ctrl','t')
 
-              elif "open new window".lower() in text.lower():
-                    speak("Opening New Window")
-                    pyautogui.hotkey('ctrl','shift','n')
+            elif "open new window".lower() in text.lower():
+                  speak("Opening New Window")
+                  pyautogui.hotkey('ctrl','shift','n')
            
 
-              elif "Go to next Tab".lower() in text.lower():
-                    pyautogui.hotkey('ctrl','tab')
-
+            elif "Go to next Tab".lower() in text.lower():
+                  pyautogui.hotkey('ctrl','tab')
                
 
 
-              elif "Close this app".lower() in text.lower():
-                    pyautogui.hotkey('alt','f4')
+            elif "Close this app".lower() in text.lower():
+                  pyautogui.hotkey('alt','f4')
 
-              elif "play " in text.lower():
-                    txt=text.replace('play ','')
-                    speak(f"Playing {txt}")
-                    pw.playonyt(txt)
+            elif "play " in text.lower():
+                  txt=text.replace('play ','')
+                  speak(f"Playing {txt}")
+                  pw.playonyt(txt)
 
             
 
-              else:
-                    pass
+            else:
+                  print("It's Out Of My Knowledge")
+                  speak("It's Out Of My Knowledge")
+                  pass
                    #   bp.reply(text)
 
+
+
+      except ValueError:
+            speak("Enter Valid Input")
+       
+      except IndexError:
+             speak("Nothing To print.....")
+
+      except NameError:
+            speak(" name error Invalid Input")
+      except TypeError:
+            speak("type error Invalid Input")
+
+      except FileNotFoundError:
+            speak("file not found")
+
+      except KeyboardInterrupt:
+           speak("\nKeyboard interrupted. Exiting...")
+      
+      except SystemExit:
+            speak("Error Occured")
+     
+      except Exception as e:
+      
+           print(f"Error Occured {e}")
             
 
 
 
-except ValueError:
-      speak("Enter Valid Input")
-       
-except IndexError:
-        speak("Nothing To print.....")
-
-except NameError:
-        speak(" name error Invalid Input")
-except TypeError:
-        speak("type error Invalid Input")
-
-except FileNotFoundError:
-        speak("file not found")
-
-except KeyboardInterrupt:
-      speak("\nKeyboard interrupted. Exiting...")
-      
-except SystemExit:
-      speak("Error Occured")
-     
-except Exception as e:
-      
-      print(f"Error Occured {e}")
-      
