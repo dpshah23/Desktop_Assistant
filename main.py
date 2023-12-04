@@ -21,6 +21,7 @@ from plyer import notification
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 from pygame import mixer
 import csv
+import speedtest
 
 # import bard as bp
 found=0
@@ -144,6 +145,16 @@ try:
                     query=take()
                     pyautogui.write(query)
                     pyautogui.press('enter')
+
+              elif "internet speed".lower() in text.lower() or "speed test".lower() in text.lower() or "what is my internet speed".lower() in text.lower():
+                    wifi = speedtest.Speedtest()
+                    speak("calculating")
+                    upload_wifi=wifi.upload()/1048576
+                    download_wifi=wifi.download()/1048576
+
+                    speak(f"Your Net's Download Speed is {download_wifi} and upload speed is {upload_wifi}......")
+                    print(f"Your Net's Download Speed is {download_wifi} and upload speed is {upload_wifi}......")
+                    
 
               elif "What is My name".lower() in text.lower():
                     speak(f"Your Name Is {name}")
@@ -353,8 +364,9 @@ try:
                    #   search="open "
                    #   startindex=text.lower().find(search)
                    #   appsearch=text[startindex+len(search):].strip
-                    search="open "
-                    appsearch1=text.strip(search)
+                  
+                    
+                    appsearch1=text.replace("open ","")
                     appsearch=appsearch1.lower()
                     print(appsearch)
                     for key in keys:
