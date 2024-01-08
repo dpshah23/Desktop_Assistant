@@ -6,5 +6,3 @@ def worldtime(city):
     data=data1.json()
     sp.speak(f" location : {city}  date : {data['date']} and time : {data['hour']} o'clock {data['minute']} minutes day : {data['day_of_week']}")
 
-   
-
