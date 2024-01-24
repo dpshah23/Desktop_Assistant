@@ -12,9 +12,4 @@ def weather(city):
     print(f"Condition : {condition1}")
     print(f"Temprature : {temp}")
 
-    return list1
-
-
-
-
-    
+    return list1    
