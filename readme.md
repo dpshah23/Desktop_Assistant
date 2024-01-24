@@ -48,5 +48,5 @@ Day 8:
     Integrate News API
     Added Indian Stock Market (opening Money Control)
     Added Support For third Party Apps
-    Set Alarm
+    Set Alarm --not working
     Remember Function
