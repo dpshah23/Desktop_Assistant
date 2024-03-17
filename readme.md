@@ -6,11 +6,11 @@ Welcome to Desktop Assistant, your personal assistant to streamline your daily t
 
 1. Clone the repository to your local machine:
     ```bash
-    git clone https://github.com/your-username/desktop-assistant.git
+    git clone https://github.com/dpshah23/Desktop_Assistant.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd desktop-assistant
+    cd Desktop_Assistant
     ```
 3. Install the required dependencies:
     ```bash
@@ -18,7 +18,7 @@ Welcome to Desktop Assistant, your personal assistant to streamline your daily t
     ```
 4. Run the program:
     ```bash
-    python desktop_assistant.py
+    python main.py
     ```
 
 
