@@ -1,0 +1,9 @@
+pyaudio
+pygame
+speech_recognition
+pyautogui
+wikipedia
+pywhatkit
+wolframalpha
+requests
+pyttsx3
