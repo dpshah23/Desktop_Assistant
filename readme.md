@@ -86,15 +86,6 @@ Welcome to Desktop Assistant, your personal assistant to streamline your daily t
 - Some features may require additional setup or permissions.
 - Ensure that you have the necessary APIs or credentials for accessing certain functionalities, such as sending WhatsApp messages.
 
-## Contribution
-Contributions to enhance the functionality and features of this project are welcome. Please feel free to submit issues or pull requests to help improve Desktop Assistant.
-
-## Credits
-This project is maintained by [Your Name/Organization]. Special thanks to the contributors who have helped in its development.
-
-## License
-This project is licensed under the [MIT License](LICENSE).
-
 ---
 
 Enjoy using Desktop Assistant to simplify your daily tasks and stay informed! If you have any feedback or suggestions, feel free to reach out.
